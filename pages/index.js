@@ -20,7 +20,7 @@ export default function Home({pokemonArray}) {
   ) 
 }
 
-export async function getStaticProps(context){
+export async function getServerSideProps(context){
 
   let pokemonArray=[];
 
