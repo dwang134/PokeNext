@@ -1,17 +1,19 @@
 import Layout from '../components/Layout'
+import Pokemon from '../components/Pokemon'
 import {useState} from 'react'
 
-export default function Home({pokemonData}) {
+export default function Home({pokemonArray}) {
 
-  const [pokemon, setPokemon]= useState(pokemonData);
+  const [pokemons, setPokemons]= useState(pokemonArray);
+  const [loading, setLoading]= useState(true);
+
+  console.log(pokemonArray[1].sprites.other["official-artwork"].front_default);
 
   return (
         <Layout title= "PokéNext">
           <div>
-            {pokemon.results.map((pokemon, index)=> (
-              <div key= {index}>
-                 {pokemon.name} 
-              </div>
+            {pokemons.map((pokemon, index)=> (
+              <Pokemon index= {index} pokemon= {pokemon}/>
             ))}
           </div>
         </Layout>
@@ -20,10 +22,16 @@ export default function Home({pokemonData}) {
 
 export async function getStaticProps(context){
 
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon")
-  const pokemonData= await res.json()
+  let pokemonArray=[];
+
+  //bulb starts at 1, 897 w/o other forms
+  for (let i= 1; i< 898; i++){
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    const data= await res.json();
+    pokemonArray.push(data);
+  }
 
   return{
-    props: {pokemonData}
+    props: {pokemonArray}
   }
 }
