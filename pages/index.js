@@ -13,7 +13,7 @@ export default function Home({pokemonArray}) {
         <Layout title= "PokéNext">
           <div>
             {pokemons.map((pokemon, index)=> (
-              <Pokemon index= {index} pokemon= {pokemon}/>
+              <Pokemon key= {index} index= {index} pokemon= {pokemon}/>
             ))}
           </div>
         </Layout>
