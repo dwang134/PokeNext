@@ -17,7 +17,7 @@ export default function Home({pokemonData}) {
 
   const getPokemon = async(data)=> {
     const pokemonArray = await Promise.all(data.map(async pokemon=> await fetchPokemon(pokemon.url))); 
-    console.log(pokemonArray);
+    // console.log(pokemonArray);
     setPokemon(pokemonArray);
   }
 
@@ -35,7 +35,7 @@ export default function Home({pokemonData}) {
 
   const nextPage= async()=> {
     // setCurrentURL(nextURL);
-    console.log(nextURL);
+    // console.log(nextURL);
     const pokemonData= await getData(nextURL);
     // console.log(pokemonData);
     // console.log(pokemonData);
@@ -56,15 +56,15 @@ export default function Home({pokemonData}) {
 
 
   return (
-        <Layout title= "PokéNext">
+        <Layout title= "pokéNext">
           <div className= "grid xs:grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 gap-10" >
             {pokemon.map((pokemon, index)=> (
-              <Pokemon key= {index} index= {index+1} pokemon= {pokemon}/>
+              <Pokemon key= {index} pokemon= {pokemon}/>
             ))}
           </div>
-          <div>
-              <button onClick = {()=> prevPage()}>prev</button>
-              <button onClick = {()=> nextPage()}>next</button>
+          <div className= "flex justify-center mt-10 gap-4">
+                <button disabled= {!prevURL} className= "disabled:bg-gray-500 px-3 py-1 bg-slate-900" onClick = {()=> prevPage()}>prev</button>
+                <button disabled= {!nextURL} className= "disabled:bg-gray-500 px-3 py-1 bg-slate-900" onClick = {()=> nextPage()}>next</button>
           </div>
         </Layout>
   ) 
@@ -72,7 +72,7 @@ export default function Home({pokemonData}) {
 
 export async function getStaticProps(context){
 
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50&offset=0');
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=30&offset=0');
   const pokemonData = await res.json();
 
   return{

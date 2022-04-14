@@ -15,7 +15,7 @@ const Layout = ({children, title}) => {
             <header className="bg-slate-900 py-10 mb-10">
                 <Link href="/">
                     <a>
-                        <h1 className="text-6xl text-center text-amber-400">{title}</h1>
+                        <h1 className="capitalize text-6xl text-center text-amber-400">{title}</h1>
                     </a>
                 </Link>
             </header>
@@ -24,7 +24,7 @@ const Layout = ({children, title}) => {
                 {children}
             </main>
 
-            <footer className="flex justify-center items-center mt-10">
+            <footer className="flex justify-center items-center mt-10 mb-5">
                 <a
                     className="flex flex-col items-center"
                     href="https://https://web-portfolio-ten.vercel.app/"
