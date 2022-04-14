@@ -27,7 +27,7 @@ const Layout = ({children, title}) => {
             <footer className="flex justify-center items-center mt-10 mb-5">
                 <a
                     className="flex flex-col items-center"
-                    href="https://https://web-portfolio-ten.vercel.app/"
+                    href="https://web-portfolio-ten.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"   
                 >
